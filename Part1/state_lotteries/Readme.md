@@ -1,7 +1,7 @@
 # State Lottery Finances, 2015
 
 ## Data source
-* [National Education Association, Estimates of School Statistics, 1969-70 through 2014-15.](https://nces.ed.gov/programs/digest/d15/tables/dt15_211.60.asp)
+[State Government Finances](https://www.census.gov/govs/state/) 2015 Annual Survey of State Government Finances Lottery Table 
 
 ## Files
 * [2015_lottery_table.xls](2015_lottery_table.xls), downloaded from the above.
