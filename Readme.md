@@ -9,7 +9,8 @@ This repository contains notebooks and other resources corresponding to a series
 * Notebooks and other resources - [Part1](Part1)
 
 ### Coming soon:
-Becoming a Certified Data Curator, Part 2
+#### Becoming a Certified Data Curator, Part 2
+* [Twitch event page](https://www.twitch.tv/events/61606)
 
 ### More information:
 * Wolfram Data Repository - [datarepository.wolframcloud.com](http://datarepository.wolframcloud.com/)
