@@ -10,8 +10,8 @@ This repository contains notebooks and other resources corresponding to a series
 
 ### Coming soon:
 #### Becoming a Certified Data Curator, Part 2
-* Wednesday, June 28, 2:00 PM - 4:00 PM CDT
-* [Twitch event page](https://www.twitch.tv/events/61606)
+* Scraping HTML
+* Notebooks and other resources - [Part2](Part2)
 
 ### More information:
 * Wolfram Data Repository - [datarepository.wolframcloud.com](http://datarepository.wolframcloud.com/)
