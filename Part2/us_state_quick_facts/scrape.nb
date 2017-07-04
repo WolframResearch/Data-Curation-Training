@@ -1,0 +1,1880 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     78516,       1872]
+NotebookOptionsPosition[     76228,       1810]
+NotebookOutlinePosition[     76577,       1825]
+CellTagsIndexPosition[     76534,       1822]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["US Census Bureau State QuickFacts", "Title",
+ CellChangeTimes->{{3.707674240485119*^9, 
+  3.707674258716936*^9}},ExpressionUUID->"21d7e2dc-4153-4bc1-8fef-\
+64a014286f76"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"URL", "@", "\"\<https://www.census.gov/quickfacts/\>\""}]], "Input",\
+
+ CellChangeTimes->{{3.7076524485568743`*^9, 
+  3.7076524511407633`*^9}},ExpressionUUID->"04c0af00-ad91-4d06-9593-\
+770238f0b935"],
+
+Cell[BoxData[
+ RowBox[{"URL", "[", 
+  TemplateBox[{"\"https://www.census.gov/quickfacts/\""},
+   "URLArgument"], "]"}]], "Output",
+ CellChangeTimes->{
+  3.7076524561457243`*^9},ExpressionUUID->"2349b9a2-5d11-42f8-aa03-\
+7e0826d37ca4"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.707685342405261*^9, 
+  3.707685381618512*^9}},ExpressionUUID->"2df22dfd-9514-438b-9c96-\
+14838f9d5926"],
+
+Cell[BoxData[
+ RowBox[{"stateabbrevs", "=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{
+     "\"\<https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations\>\"",
+       ",", "\"\<Data\>\""}], "]"}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "state_", ",", "_", ",", "_", ",", "_", ",", "_Integer", ",", "usps_", 
+       ",", "___"}], "}"}], "\[RuleDelayed]", 
+     RowBox[{"usps", " ", "\[Rule]", " ", "state"}]}], ",", "Infinity"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.707685234202634*^9, 3.707685257746571*^9}, {
+  3.7076853844190683`*^9, 
+  3.707685400449424*^9}},ExpressionUUID->"ed3084a9-7557-4f71-badb-\
+4a2a1682a2ce"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"stateabbeva", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"AssociationThread", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"First", "/@", "#"}], ")"}], " ", "\[Rule]", " ", 
+      RowBox[{
+       RowBox[{"Interpreter", "[", "\"\<USState\>\"", "]"}], "[", 
+       RowBox[{"Last", "/@", "#"}], "]"}]}], "]"}], "&"}], "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<AL\>\"", "\[Rule]", "\"\<Alabama\>\""}], ",", 
+     RowBox[{"\"\<AK\>\"", "\[Rule]", "\"\<Alaska\>\""}], ",", 
+     RowBox[{"\"\<AZ\>\"", "\[Rule]", "\"\<Arizona\>\""}], ",", 
+     RowBox[{"\"\<AR\>\"", "\[Rule]", "\"\<Arkansas\>\""}], ",", 
+     RowBox[{"\"\<CA\>\"", "\[Rule]", "\"\<California\>\""}], ",", 
+     RowBox[{"\"\<CO\>\"", "\[Rule]", "\"\<Colorado\>\""}], ",", 
+     RowBox[{"\"\<CT\>\"", "\[Rule]", "\"\<Connecticut\>\""}], ",", 
+     RowBox[{"\"\<DE\>\"", "\[Rule]", "\"\<Delaware\>\""}], ",", 
+     RowBox[{"\"\<DC\>\"", "\[Rule]", "\"\<District of Columbia\>\""}], ",", 
+     RowBox[{"\"\<FL\>\"", "\[Rule]", "\"\<Florida\>\""}], ",", 
+     RowBox[{"\"\<GA\>\"", "\[Rule]", "\"\<Georgia\>\""}], ",", 
+     RowBox[{"\"\<HI\>\"", "\[Rule]", "\"\<Hawaii\>\""}], ",", 
+     RowBox[{"\"\<ID\>\"", "\[Rule]", "\"\<Idaho\>\""}], ",", 
+     RowBox[{"\"\<IL\>\"", "\[Rule]", "\"\<Illinois\>\""}], ",", 
+     RowBox[{"\"\<IN\>\"", "\[Rule]", "\"\<Indiana\>\""}], ",", 
+     RowBox[{"\"\<IA\>\"", "\[Rule]", "\"\<Iowa\>\""}], ",", 
+     RowBox[{"\"\<KS\>\"", "\[Rule]", "\"\<Kansas\>\""}], ",", 
+     RowBox[{"\"\<KY\>\"", "\[Rule]", "\"\<Kentucky\>\""}], ",", 
+     RowBox[{"\"\<LA\>\"", "\[Rule]", "\"\<Louisiana\>\""}], ",", 
+     RowBox[{"\"\<ME\>\"", "\[Rule]", "\"\<Maine\>\""}], ",", 
+     RowBox[{"\"\<MD\>\"", "\[Rule]", "\"\<Maryland\>\""}], ",", 
+     RowBox[{"\"\<MA\>\"", "\[Rule]", "\"\<Massachusetts\>\""}], ",", 
+     RowBox[{"\"\<MI\>\"", "\[Rule]", "\"\<Michigan\>\""}], ",", 
+     RowBox[{"\"\<MN\>\"", "\[Rule]", "\"\<Minnesota\>\""}], ",", 
+     RowBox[{"\"\<MS\>\"", "\[Rule]", "\"\<Mississippi\>\""}], ",", 
+     RowBox[{"\"\<MO\>\"", "\[Rule]", "\"\<Missouri\>\""}], ",", 
+     RowBox[{"\"\<MT\>\"", "\[Rule]", "\"\<Montana\>\""}], ",", 
+     RowBox[{"\"\<NE\>\"", "\[Rule]", "\"\<Nebraska\>\""}], ",", 
+     RowBox[{"\"\<NV\>\"", "\[Rule]", "\"\<Nevada\>\""}], ",", 
+     RowBox[{"\"\<NH\>\"", "\[Rule]", "\"\<New Hampshire\>\""}], ",", 
+     RowBox[{"\"\<NJ\>\"", "\[Rule]", "\"\<New Jersey\>\""}], ",", 
+     RowBox[{"\"\<NM\>\"", "\[Rule]", "\"\<New Mexico\>\""}], ",", 
+     RowBox[{"\"\<NY\>\"", "\[Rule]", "\"\<New York\>\""}], ",", 
+     RowBox[{"\"\<NC\>\"", "\[Rule]", "\"\<North Carolina\>\""}], ",", 
+     RowBox[{"\"\<ND\>\"", "\[Rule]", "\"\< North Dakota\>\""}], ",", 
+     RowBox[{"\"\<OH\>\"", "\[Rule]", "\"\<Ohio\>\""}], ",", 
+     RowBox[{"\"\<OK\>\"", "\[Rule]", "\"\<Oklahoma\>\""}], ",", 
+     RowBox[{"\"\<OR\>\"", "\[Rule]", "\"\<Oregon\>\""}], ",", 
+     RowBox[{"\"\<PA\>\"", "\[Rule]", "\"\<Pennsylvania\>\""}], ",", 
+     RowBox[{"\"\<RI\>\"", "\[Rule]", "\"\<Rhode Island\>\""}], ",", 
+     RowBox[{"\"\<SC\>\"", "\[Rule]", "\"\<South Carolina\>\""}], ",", 
+     RowBox[{"\"\<SD\>\"", "\[Rule]", "\"\<South Dakota\>\""}], ",", 
+     RowBox[{"\"\<TN\>\"", "\[Rule]", "\"\<Tennessee\>\""}], ",", 
+     RowBox[{"\"\<TX\>\"", "\[Rule]", "\"\<Texas\>\""}], ",", 
+     RowBox[{"\"\<UT\>\"", "\[Rule]", "\"\<Utah\>\""}], ",", 
+     RowBox[{"\"\<VT\>\"", "\[Rule]", "\"\<Vermont\>\""}], ",", 
+     RowBox[{"\"\<VA\>\"", "\[Rule]", "\"\<Virginia\>\""}], ",", 
+     RowBox[{"\"\<WA\>\"", "\[Rule]", "\"\<Washington\>\""}], ",", 
+     RowBox[{"\"\<WV\>\"", "\[Rule]", "\"\<West Virginia\>\""}], ",", 
+     RowBox[{"\"\<WI\>\"", "\[Rule]", "\"\<Wisconsin\>\""}], ",", 
+     RowBox[{"\"\<WY\>\"", "\[Rule]", "\"\<Wyoming\>\""}]}], "}"}], "]"}]}]], \
+"Input",
+ CellChangeTimes->{{3.7076854508687487`*^9, 
+  3.7076855716902313`*^9}},ExpressionUUID->"21494336-48b5-4c73-96cc-\
+dfbf9ef5bc5b"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"AL\"\>", "\[Rule]", 
+    TemplateBox[{"\"Alabama, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Alabama\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Alabama\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"AK\"\>", "\[Rule]", 
+    TemplateBox[{"\"Alaska, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Alaska\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"AZ\"\>", "\[Rule]", 
+    TemplateBox[{"\"Arizona, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Arizona\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Arizona\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"AR\"\>", "\[Rule]", 
+    TemplateBox[{"\"Arkansas, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Arkansas\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Arkansas\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"CA\"\>", "\[Rule]", 
+    TemplateBox[{"\"California, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"California\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"California\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"CO\"\>", "\[Rule]", 
+    TemplateBox[{"\"Colorado, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Colorado\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Colorado\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"CT\"\>", "\[Rule]", 
+    TemplateBox[{"\"Connecticut, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Connecticut\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"Connecticut\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"DE\"\>", "\[Rule]", 
+    TemplateBox[{"\"Delaware, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Delaware\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Delaware\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"DC\"\>", "\[Rule]", 
+    TemplateBox[{
+     "\"District of Columbia, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"DistrictOfColumbia\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"DistrictOfColumbia\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"FL\"\>", "\[Rule]", 
+    TemplateBox[{"\"Florida, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Florida\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Florida\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"GA\"\>", "\[Rule]", 
+    TemplateBox[{"\"Georgia, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Georgia\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Georgia\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"HI\"\>", "\[Rule]", 
+    TemplateBox[{"\"Hawaii, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Hawaii\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Hawaii\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"ID\"\>", "\[Rule]", 
+    TemplateBox[{"\"Idaho, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Idaho\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Idaho\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"IL\"\>", "\[Rule]", 
+    TemplateBox[{"\"Illinois, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Illinois\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Illinois\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"IN\"\>", "\[Rule]", 
+    TemplateBox[{"\"Indiana, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Indiana\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Indiana\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"IA\"\>", "\[Rule]", 
+    TemplateBox[{"\"Iowa, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Iowa\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Iowa\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"KS\"\>", "\[Rule]", 
+    TemplateBox[{"\"Kansas, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Kansas\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Kansas\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"KY\"\>", "\[Rule]", 
+    TemplateBox[{"\"Kentucky, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Kentucky\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Kentucky\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"LA\"\>", "\[Rule]", 
+    TemplateBox[{"\"Louisiana, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Louisiana\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"Louisiana\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"ME\"\>", "\[Rule]", 
+    TemplateBox[{"\"Maine, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Maine\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Maine\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"MD\"\>", "\[Rule]", 
+    TemplateBox[{"\"Maryland, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Maryland\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Maryland\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"MA\"\>", "\[Rule]", 
+    TemplateBox[{"\"Massachusetts, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Massachusetts\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", \
+{\\\"Massachusetts\\\", \\\"UnitedStates\\\"}]\"",
+      "\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"MI\"\>", "\[Rule]", 
+    TemplateBox[{"\"Michigan, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Michigan\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Michigan\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"MN\"\>", "\[Rule]", 
+    TemplateBox[{"\"Minnesota, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Minnesota\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"Minnesota\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"MS\"\>", "\[Rule]", 
+    TemplateBox[{"\"Mississippi, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Mississippi\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"Mississippi\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"MO\"\>", "\[Rule]", 
+    TemplateBox[{"\"Missouri, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Missouri\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Missouri\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"MT\"\>", "\[Rule]", 
+    TemplateBox[{"\"Montana, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Montana\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Montana\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"NE\"\>", "\[Rule]", 
+    TemplateBox[{"\"Nebraska, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Nebraska\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Nebraska\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"NV\"\>", "\[Rule]", 
+    TemplateBox[{"\"Nevada, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Nevada\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Nevada\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"NH\"\>", "\[Rule]", 
+    TemplateBox[{"\"New Hampshire, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"NewHampshire\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", \
+{\\\"NewHampshire\\\", \\\"UnitedStates\\\"}]\"",
+      "\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"NJ\"\>", "\[Rule]", 
+    TemplateBox[{"\"New Jersey, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"NewJersey\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"NewJersey\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"NM\"\>", "\[Rule]", 
+    TemplateBox[{"\"New Mexico, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"NewMexico\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"NewMexico\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"NY\"\>", "\[Rule]", 
+    TemplateBox[{"\"New York, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"NewYork\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"NewYork\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"NC\"\>", "\[Rule]", 
+    TemplateBox[{"\"North Carolina, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"NorthCarolina\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", \
+{\\\"NorthCarolina\\\", \\\"UnitedStates\\\"}]\"",
+      "\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"ND\"\>", "\[Rule]", 
+    TemplateBox[{"\"North Dakota, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"NorthDakota\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"NorthDakota\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"OH\"\>", "\[Rule]", 
+    TemplateBox[{"\"Ohio, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Ohio\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Ohio\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"OK\"\>", "\[Rule]", 
+    TemplateBox[{"\"Oklahoma, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Oklahoma\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Oklahoma\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"OR\"\>", "\[Rule]", 
+    TemplateBox[{"\"Oregon, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Oregon\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Oregon\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"PA\"\>", "\[Rule]", 
+    TemplateBox[{"\"Pennsylvania, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Pennsylvania\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", \
+{\\\"Pennsylvania\\\", \\\"UnitedStates\\\"}]\"",
+      "\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"RI\"\>", "\[Rule]", 
+    TemplateBox[{"\"Rhode Island, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"RhodeIsland\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"RhodeIsland\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"SC\"\>", "\[Rule]", 
+    TemplateBox[{"\"South Carolina, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"SouthCarolina\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", \
+{\\\"SouthCarolina\\\", \\\"UnitedStates\\\"}]\"",
+      "\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"SD\"\>", "\[Rule]", 
+    TemplateBox[{"\"South Dakota, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"SouthDakota\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"SouthDakota\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"TN\"\>", "\[Rule]", 
+    TemplateBox[{"\"Tennessee, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Tennessee\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"Tennessee\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"TX\"\>", "\[Rule]", 
+    TemplateBox[{"\"Texas, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Texas\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Texas\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"UT\"\>", "\[Rule]", 
+    TemplateBox[{"\"Utah, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Utah\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Utah\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"VT\"\>", "\[Rule]", 
+    TemplateBox[{"\"Vermont, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Vermont\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Vermont\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"VA\"\>", "\[Rule]", 
+    TemplateBox[{"\"Virginia, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Virginia\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Virginia\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"WA\"\>", "\[Rule]", 
+    TemplateBox[{"\"Washington, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Washington\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"Washington\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"WV\"\>", "\[Rule]", 
+    TemplateBox[{"\"West Virginia, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"WestVirginia\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", \
+{\\\"WestVirginia\\\", \\\"UnitedStates\\\"}]\"",
+      "\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"WI\"\>", "\[Rule]", 
+    TemplateBox[{"\"Wisconsin, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Wisconsin\"", ",", "\"UnitedStates\""}], "}"}]}], 
+        "]"}],"\"Entity[\\\"AdministrativeDivision\\\", {\\\"Wisconsin\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}], ",", 
+   RowBox[{"\<\"WY\"\>", "\[Rule]", 
+    TemplateBox[{"\"Wyoming, United States\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"AdministrativeDivision\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Wyoming\"", ",", "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"AdministrativeDivision\\\", {\\\"Wyoming\\\", \
+\\\"UnitedStates\\\"}]\"","\"administrative division\""},
+     "Entity"]}]}], "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{
+  3.7076856325441847`*^9},ExpressionUUID->"50585d7e-eae7-4ee4-a473-\
+b843289d4214"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"stateURLs", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "\"\<https://www.census.gov/quickfacts/fact/table/\>\"", "<>", "#"}], 
+     "&"}], "/@", 
+    RowBox[{"Keys", "[", "stateabbeva", "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.70768512760979*^9, 3.7076851410262623`*^9}, {
+  3.707685642500203*^9, 
+  3.707685668155427*^9}},ExpressionUUID->"64a7657d-a3f3-4ddc-8dd8-\
+843307a750aa"],
+
+Cell[BoxData[
+ RowBox[{"tst", "=", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+    RowBox[{"RandomChoice", "[", "stateURLs", "]"}], ",", 
+    "\"\<XMLObject\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7076856755306177`*^9, 
+  3.7076857033227053`*^9}},ExpressionUUID->"2b92f768-97fe-44b9-9950-\
+d2678723f95c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rows", "=", 
+  RowBox[{"Cases", "[", 
+   RowBox[{"tst", ",", 
+    RowBox[{"XMLElement", "[", 
+     RowBox[{"\"\<tr\>\"", ",", "_", ",", "_"}], "]"}], ",", "Infinity"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.70768580400254*^9, 
+  3.707685827694665*^9}},ExpressionUUID->"0d87b40e-fb11-45ed-b3f1-\
+360f3a0b40d9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          TemplateBox[{"1"},
+           "OutputSizeLimit`Skeleton"], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{58., {2., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLText",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 131, 16447600903806473187, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 131, 16447600903806473187, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 131, 16447600903806473187, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[16447600903806473187 === $SessionID, 
+   Out[131], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{{3.707685819455984*^9, 
+  3.7076858283392773`*^9}},ExpressionUUID->"7339ca02-11ff-466e-a2f4-\
+f8a564d02cb8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RandomChoice", "[", "rows", "]"}]], "Input",
+ CellChangeTimes->{{3.7076858206786537`*^9, 
+  3.707685831438689*^9}},ExpressionUUID->"c02db629-ffb3-4fb6-a121-\
+f4efa8fac186"],
+
+Cell[BoxData[
+ RowBox[{"XMLElement", "[", 
+  RowBox[{"\<\"tr\"\>", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"class\"\>", "\[Rule]", "\<\"fact\"\>"}], ",", 
+     RowBox[{"\<\"data-url\"\>", 
+      "\[Rule]", "\<\"/quickfacts/fact/table/WY/AGE295216#viewtop\"\>"}], ",", 
+     RowBox[{"\<\"data-mnemonic\"\>", "\[Rule]", "\<\"AGE295216\"\>"}], ",", 
+     RowBox[{"\<\"data-unit\"\>", "\[Rule]", "\<\"PCT\"\>"}], ",", 
+     RowBox[{"\<\"data-precision\"\>", "\[Rule]", "\<\"1\"\>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"XMLElement", "[", 
+      RowBox[{"\<\"td\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\<\"colspan\"\>", "\[Rule]", "\<\"1\"\>"}], ",", 
+         RowBox[{"\<\"rowspan\"\>", "\[Rule]", "\<\"1\"\>"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\<\"\\n\"\>", ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"a\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\<\"shape\"\>", "\[Rule]", "\<\"rect\"\>"}], ",", 
+             RowBox[{"\<\"tabindex\"\>", "\[Rule]", "\<\"-1\"\>"}], ",", 
+             
+             RowBox[{"\<\"class\"\>", 
+              "\[Rule]", "\<\"quickinfo icon-info-circled-1\"\>"}], ",", 
+             RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"AGE295216\"\>"}], ",", 
+             
+             RowBox[{"\<\"data-title\"\>", 
+              "\[Rule]", "\<\"Persons under 18 years, percent, July 1, 2016,  \
+(V2016)\"\>"}], ",", 
+             RowBox[{"\<\"title\"\>", "\[Rule]", "\<\"Quick Info\"\>"}], ",", 
+             
+             
+             RowBox[{"\<\"href\"\>", 
+              "\[Rule]", "\<\"/quickfacts/note/AGE295216\"\>"}]}], "}"}], ",", 
+           RowBox[{"{", "}"}]}], "]"}], ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"span\"\>", ",", 
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{
+           "{", "\<\"Persons under 18 years, percent, July 1, 2016,  \
+(V2016)\"\>", "}"}]}], "]"}], ",", "\<\"\\n\"\>"}], "}"}]}], "]"}], ",", 
+     RowBox[{"XMLElement", "[", 
+      RowBox[{"\<\"td\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\<\"colspan\"\>", "\[Rule]", "\<\"1\"\>"}], ",", 
+         RowBox[{"\<\"rowspan\"\>", "\[Rule]", "\<\"1\"\>"}], ",", 
+         RowBox[{"\<\"data-geoid\"\>", "\[Rule]", "\<\"56\"\>"}], ",", 
+         RowBox[{"\<\"data-isnumeric\"\>", "\[Rule]", "\<\"1\"\>"}], ",", 
+         RowBox[{"\<\"data-value\"\>", "\[Rule]", "\<\"23.7\"\>"}], ",", 
+         RowBox[{"\<\"data-srcnote\"\>", "\[Rule]", "\<\"false\"\>"}]}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\<\"\\n\"\>", ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"span\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{"\<\"data-title\"\>", "\[Rule]", "\<\"Wyoming\"\>"}], 
+            "}"}], ",", 
+           RowBox[{"{", "}"}]}], "]"}], ",", "\<\"23.7%\"\>"}], "}"}]}], 
+      "]"}]}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.707685831862012*^9},ExpressionUUID->"2c8824ea-a0a2-4fed-a2af-\
+bdca5f9f2323"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "\"\<Population estimates, July 1, 2016,  (V2016)\>\"", ",", 
+   "\"\<Wyoming\>\""}], "}"}]], "Input",ExpressionUUID->"7770fc15-98c6-4aba-\
+bf73-ffac13e125e4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DeleteCases", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cases", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{
+         RowBox[{"HoldPattern", "[", 
+          RowBox[{"\"\<data-title\>\"", "\[Rule]", "t_"}], "]"}], 
+         "\[RuleDelayed]", "t"}], ",", "Infinity"}], "]"}], "\[Rule]", 
+      RowBox[{"Cases", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{
+         RowBox[{"HoldPattern", "[", 
+          RowBox[{"\"\<data-value\>\"", " ", "\[Rule]", "v_"}], "]"}], 
+         "\[RuleDelayed]", "v"}], ",", "Infinity"}], "]"}]}], "&"}], "/@", 
+    "rows"}], ",", 
+   RowBox[{
+    RowBox[{"{", "}"}], "\[Rule]", 
+    RowBox[{"{", "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.707685957802174*^9, 3.70768605845909*^9}, {
+  3.70768615304609*^9, 
+  3.707686294080168*^9}},ExpressionUUID->"347302cd-afa7-47ab-9267-\
+9c266c0a9538"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", "\<\"Wyoming\"\>", "}"}], "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Population estimates, July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"585501\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Population estimates, July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"585501\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Population estimates base, April 1, 2010,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"563767\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Population, percent change - April 1, 2010 (estimates base) \
+to July 1, 2016,  (V2016)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"3.9\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Population, Census, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"563626\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons under 5 years, percent, July 1, 2016,  (V2016)\"\>",
+       ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"6.5\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons under 5 years, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"7.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons under 18 years, percent, July 1, 2016,  \
+(V2016)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"23.7\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons under 18 years, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"24.0\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons 65 years and over, percent,  July 1, 2016,  (V2016)\
+\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"15.0\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons 65 years and over, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"12.4\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Female persons, percent,  July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"48.9\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Female persons, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"49.0\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"White alone, percent, July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"92.8\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"White alone, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"90.7\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Black or African American alone, percent, July 1, 2016,  \
+(V2016)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"1.3\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Black or African American alone, percent, April 1, \
+2010\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"0.8\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"American Indian and Alaska Native alone, percent, July 1, \
+2016,  (V2016)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"2.7\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"American Indian and Alaska Native alone, percent, April 1, \
+2010\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"2.4\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Asian alone, percent, July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"1.0\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Asian alone, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"0.8\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Native Hawaiian and Other Pacific Islander alone, percent, \
+July 1, 2016,  (V2016)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"0.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Native Hawaiian and Other Pacific Islander alone, percent, \
+April 1, 2010\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"0.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Two or More Races, percent, July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"2.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Two or More Races, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"2.2\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hispanic or Latino, percent, July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"10.0\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hispanic or Latino, percent, April 1, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"8.9\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"White alone, not Hispanic or Latino, percent, July 1, 2016, \
+ (V2016)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"84.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"White alone, not Hispanic or Latino, percent, April 1, 2010\
+\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"85.9\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Veterans, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], 
+    "\[Rule]", 
+    RowBox[{"{", "\<\"48505\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Foreign born persons, percent, 2011-2015\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"3.6\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Housing units,  July 1, 2016,  (V2016)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"270600\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Housing units, April 1, 2010\"\>", ",", "\<\"Wyoming\"\>"}],
+      "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"261868\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Owner-occupied housing unit rate, 2011-2015\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"69.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Median value of owner-occupied housing units, \
+2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"194800\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Median selected monthly owner costs -with a mortgage, \
+2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"1348\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Median selected monthly owner costs -without a mortgage, \
+2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"386\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Median gross rent, 2011-2015 \"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"789\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Building permits, 2016\"\>", ",", "\<\"Wyoming\"\>"}], 
+     "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"1727\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Households, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}],
+     "\[Rule]", 
+    RowBox[{"{", "\<\"226865\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons per household, 2011-2015\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"2.49\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Living in same house 1 year ago, percent of persons age 1 \
+year+, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"81.9\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Language other than English spoken at home, percent of \
+persons age 5 years+, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], 
+    "\[Rule]", 
+    RowBox[{"{", "\<\"7.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"High school graduate or higher, percent of persons age 25 \
+years+, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"92.3\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Bachelor's degree or higher, percent of persons age 25 \
+years+, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"25.7\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"With a disability, under age 65 years, percent, 2011-2015\"\
+\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"8.5\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons  without health insurance, under age 65 years, \
+percent\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"13.4\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"In civilian labor force, total, percent of population age \
+16 years+, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"67.7\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"In civilian labor force, female, percent of population age \
+16 years+, 2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"62.7\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total accommodation and food services sales, 2012 \
+($1,000)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"1644844\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total health care and social assistance receipts/revenue, \
+2012 ($1,000)\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"3291478\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total manufacturers shipments, 2012 ($1,000)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"10783794\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total merchant wholesaler sales, 2012 ($1,000)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"5597891\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total retail sales, 2012 ($1,000)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"9446043\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total retail sales per capita, 2012\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"16388\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Mean travel time to work (minutes), workers age 16 years+, \
+2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"18.3\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Median household income (in 2015 dollars), 2011-2015\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"58840\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Per capita income in past 12 months (in 2015 dollars), \
+2011-2015\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"29803\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Persons in poverty, percent\"\>", ",", "\<\"Wyoming\"\>"}], 
+     "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"11.1\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total employer establishments, 2015\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"21040\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total employment, 2015\"\>", ",", "\<\"Wyoming\"\>"}], 
+     "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"219881\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total annual payroll, 2015 ($1,000)\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"10094010\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total employment, percent change, 2014-2015\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"0\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Total nonemployer establishments, 2015\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"48140\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"All firms, 2012\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], 
+    "\[Rule]", 
+    RowBox[{"{", "\<\"62427\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Men-owned firms, 2012\"\>", ",", "\<\"Wyoming\"\>"}], "}"}],
+     "\[Rule]", 
+    RowBox[{"{", "\<\"30039\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Women-owned firms, 2012\"\>", ",", "\<\"Wyoming\"\>"}], 
+     "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"19344\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Minority-owned firms, 2012\"\>", ",", "\<\"Wyoming\"\>"}], 
+     "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"4077\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Nonminority-owned firms, 2012\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"55397\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Veteran-owned firms, 2012\"\>", ",", "\<\"Wyoming\"\>"}], 
+     "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"6470\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Nonveteran-owned firms, 2012\"\>", ",", "\<\"Wyoming\"\>"}],
+      "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"51353\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Population per square mile, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"5.8\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Land area in square miles, 2010\"\>", 
+      ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    RowBox[{"{", "\<\"97093.14\"\>", "}"}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"FIPS Code\"\>", ",", "\<\"Wyoming\"\>"}], "}"}], "\[Rule]", 
+    
+    RowBox[{"{", "\<\"56\"\>", "}"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7076860095228662`*^9, 3.707686061415077*^9, {3.707686159332919*^9, 
+   3.707686230766364*^9}},ExpressionUUID->"615b0468-47a0-47d4-9cc7-\
+c49a4c01086c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{
+  "\"\<https://www.census.gov/quickfacts/fact/table/WY\>\"", ",", 
+   "\"\<Data\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.707685854814577*^9, 
+  3.707685859927136*^9}},ExpressionUUID->"74393f58-15fe-4f03-b6bb-\
+413ef3bd014b"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\<\" Topics Population, Economy \"\>", 
+       ",", "\<\" Geography Maps, Products \"\>", 
+       ",", "\<\" Library Infographics, Publications \"\>", 
+       ",", "\<\" Data Tools, Developers \"\>", 
+       ",", "\<\" Surveys/Programs Respond, Survey Data \"\>", 
+       ",", "\<\" Newsroom News, Blogs \"\>", 
+       ",", "\<\" About Us Our Research \"\>"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Population \"\>", ",", "\<\" Economy \"\>", 
+           ",", "\<\" Business \"\>", ",", "\<\" Education \"\>"}], "}"}], 
+         ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Emergency Preparedness \"\>", 
+           ",", "\<\" Employment \"\>", 
+           ",", "\<\" Families & Living Arrangements \"\>", 
+           ",", "\<\" Health \"\>"}], "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Housing \"\>", ",", "\<\" Income & Poverty \"\>", 
+           ",", "\<\" International Trade \"\>", 
+           ",", "\<\" Public Sector \"\>"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Geography Main \"\>", ",", "\<\" About \"\>", 
+           ",", "\<\" Education \"\>", ",", "\<\" GSS Initiative \"\>"}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Interactive Maps \"\>", ",", "\<\" Maps & Data \"\>", 
+           ",", "\<\" Metropolitan & Micropolitan \"\>", 
+           ",", "\<\" Partnerships \"\>"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\" Reference \"\>", ",", "\<\" Research \"\>"}], "}"}]}],
+         "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Main Library \"\>", ",", "\<\" Audio \"\>", 
+           ",", "\<\" Photos \"\>", ",", "\<\" Publications \"\>"}], "}"}], 
+         ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Videos \"\>", 
+           ",", "\<\" Infographics & Visualizations \"\>", 
+           ",", "\<\" Working Papers \"\>"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Data Main \"\>", ",", "\<\" Data Tools & Apps \"\>", 
+           ",", "\<\" Developers \"\>", ",", "\<\" Mobile Apps \"\>"}], "}"}],
+          ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Product Catalog \"\>", ",", "\<\" Related Sites \"\>",
+            ",", "\<\" Combining Data \"\>", ",", "\<\" Software \"\>"}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Training & Workshops \"\>", 
+           ",", "\<\" Visualizations \"\>"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Surveys/Programs Main \"\>", 
+           ",", "\<\" Are you in a Survey? \"\>", 
+           ",", "\<\" 2020 Census \"\>", ",", "\<\" 2017 Census Tests \"\>"}],
+           "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" 2018 End-to-End Census Test \"\>", 
+           ",", "\<\" 2010 Census \"\>", 
+           ",", "\<\" American Community Survey (ACS) \"\>", 
+           ",", "\<\" American Housing Survey (AHS) \"\>"}], "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Economic Census \"\>", 
+           ",", "\<\" Special Census Program \"\>", 
+           ",", "\<\" Survey of Income and Program Participation \"\>", 
+           ",", "\<\" All Surveys & Programs \"\>"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Latest News \"\>", ",", "\<\" News Releases \"\>", 
+           ",", "\<\" Blogs/Social Media \"\>", 
+           ",", "\<\" Facts for Features \"\>"}], "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Stats for Stories \"\>", ",", "\<\" Tip Sheets \"\>", 
+           ",", "\<\" Press Kits \"\>", ",", "\<\" Embargoed Releases \"\>"}],
+           "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" About the Bureau \"\>", ",", "\<\" Who We Are \"\>", 
+           ",", "\<\" What We Do \"\>", ",", "\<\" Our Research \"\>"}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Business Opportunities \"\>", 
+           ",", "\<\" History \"\>", ",", "\<\" Census Careers \"\>", 
+           ",", "\<\" Field Jobs by State \"\>"}], "}"}], 
+         ",", "\<\" Combining Data \"\>"}], "}"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\"All Topics Population Age and Sex Race and Hispanic \
+Origin Population Characteristics Housing Families & Living Arrangements \
+Education Health Economy Transportation Income & Poverty Businesses Geography\
+\"\>", ",", "\<\" Wyoming \"\>"}], "}"}], ",", 
+         RowBox[{"{", 
+          
+          RowBox[{"\<\" Population estimates, July 1, 2016, (V2016) \"\>", 
+           ",", "\<\" 585,501\"\>"}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\<\"People\"\>", ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Population\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Population estimates, July 1, 2016, (V2016) \"\>", 
+             ",", "\<\" 585,501\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Population estimates base, April 1, 2010, (V2016) \
+\"\>", ",", "\<\" 563,767\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Population, percent change - April 1, 2010 \
+(estimates base) to July 1, 2016, (V2016) \"\>", ",", "\<\" 3.9%\"\>"}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Population, Census, April 1, 2010 \"\>", 
+             ",", "\<\" 563,626\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Age and Sex\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons under 5 years, percent, July 1, 2016, \
+(V2016) \"\>", ",", "\<\" 6.5%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons under 5 years, percent, April 1, 2010 \"\>",
+              ",", "\<\" 7.1%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons under 18 years, percent, July 1, 2016, \
+(V2016) \"\>", ",", "\<\" 23.7%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons under 18 years, percent, April 1, 2010 \
+\"\>", ",", "\<\" 24.0%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons 65 years and over, percent, July 1, 2016, \
+(V2016) \"\>", ",", "\<\" 15.0%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons 65 years and over, percent, April 1, 2010 \
+\"\>", ",", "\<\" 12.4%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Female persons, percent, July 1, 2016, (V2016) \
+\"\>", ",", "\<\" 48.9%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Female persons, percent, April 1, 2010 \"\>", 
+             ",", "\<\" 49.0%\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Race and Hispanic Origin\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" White alone, percent, July 1, 2016, (V2016) (a) \
+\"\>", ",", "\<\" 92.8%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" White alone, percent, April 1, 2010 (a) \"\>", 
+             ",", "\<\" 90.7%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Black or African American alone, percent, July 1, \
+2016, (V2016) (a) \"\>", ",", "\<\" 1.3%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Black or African American alone, percent, April 1, \
+2010 (a) \"\>", ",", "\<\" 0.8%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" American Indian and Alaska Native alone, percent, \
+July 1, 2016, (V2016) (a) \"\>", ",", "\<\" 2.7%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" American Indian and Alaska Native alone, percent, \
+April 1, 2010 (a) \"\>", ",", "\<\" 2.4%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Asian alone, percent, July 1, 2016, (V2016) (a) \
+\"\>", ",", "\<\" 1.0%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Asian alone, percent, April 1, 2010 (a) \"\>", 
+             ",", "\<\" 0.8%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Native Hawaiian and Other Pacific Islander alone, \
+percent, July 1, 2016, (V2016) (a) \"\>", ",", "\<\" 0.1%\"\>"}], "}"}], ",", 
+           
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Native Hawaiian and Other Pacific Islander alone, \
+percent, April 1, 2010 (a) \"\>", ",", "\<\" 0.1%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Two or More Races, percent, July 1, 2016, (V2016) \
+\"\>", ",", "\<\" 2.1%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Two or More Races, percent, April 1, 2010 \"\>", 
+             ",", "\<\" 2.2%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Hispanic or Latino, percent, July 1, 2016, (V2016) \
+(b) \"\>", ",", "\<\" 10.0%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Hispanic or Latino, percent, April 1, 2010 (b) \
+\"\>", ",", "\<\" 8.9%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" White alone, not Hispanic or Latino, percent, July \
+1, 2016, (V2016) \"\>", ",", "\<\" 84.1%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" White alone, not Hispanic or Latino, percent, April \
+1, 2010 \"\>", ",", "\<\" 85.9%\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Population Characteristics\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{"\<\" Veterans, 2011-2015 \"\>", ",", "\<\" 48,505\"\>"}],
+             "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Foreign born persons, percent, 2011-2015 \"\>", 
+             ",", "\<\" 3.6%\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Housing\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Housing units, July 1, 2016, (V2016) \"\>", 
+             ",", "\<\" 270,600\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Housing units, April 1, 2010 \"\>", 
+             ",", "\<\" 261,868\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Owner-occupied housing unit rate, 2011-2015 \"\>", 
+             ",", "\<\" 69.1%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Median value of owner-occupied housing units, \
+2011-2015 \"\>", ",", "\<\" $194,800\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Median selected monthly owner costs -with a \
+mortgage, 2011-2015 \"\>", ",", "\<\" $1,348\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Median selected monthly owner costs -without a \
+mortgage, 2011-2015 \"\>", ",", "\<\" $386\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Median gross rent, 2011-2015 \"\>", 
+             ",", "\<\" $789\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Building permits, 2016 \"\>", 
+             ",", "\<\" 1,727\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Families & Living Arrangements\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Households, 2011-2015 \"\>", 
+             ",", "\<\" 226,865\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons per household, 2011-2015 \"\>", 
+             ",", "\<\" 2.49\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Living in same house 1 year ago, percent of persons \
+age 1 year+, 2011-2015 \"\>", ",", "\<\" 81.9%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Language other than English spoken at home, percent \
+of persons age 5 years+, 2011-2015 \"\>", ",", "\<\" 7.1%\"\>"}], "}"}]}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Education\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" High school graduate or higher, percent of persons \
+age 25 years+, 2011-2015 \"\>", ",", "\<\" 92.3%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Bachelor's degree or higher, percent of persons age \
+25 years+, 2011-2015 \"\>", ",", "\<\" 25.7%\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Health\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" With a disability, under age 65 years, percent, \
+2011-2015 \"\>", ",", "\<\" 8.5%\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons without health insurance, under age 65 \
+years, percent \"\>", ",", "\<\" \:e840 \:e83f 13.4%\"\>"}], "}"}]}], "}"}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Economy\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" In civilian labor force, total, percent of \
+population age 16 years+, 2011-2015 \"\>", ",", "\<\" 67.7%\"\>"}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" In civilian labor force, female, percent of \
+population age 16 years+, 2011-2015 \"\>", ",", "\<\" 62.7%\"\>"}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total accommodation and food services sales, 2012 \
+($1,000) (c) \"\>", ",", "\<\" 1,644,844\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total health care and social assistance \
+receipts/revenue, 2012 ($1,000) (c) \"\>", ",", "\<\" 3,291,478\"\>"}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total manufacturers shipments, 2012 ($1,000) (c) \"\
+\>", ",", "\<\" 10,783,794\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total merchant wholesaler sales, 2012 ($1,000) (c) \
+\"\>", ",", "\<\" 5,597,891\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total retail sales, 2012 ($1,000) (c) \"\>", 
+             ",", "\<\" 9,446,043\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total retail sales per capita, 2012 (c) \"\>", 
+             ",", "\<\" $16,388\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Transportation\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Mean travel time to work (minutes), workers age 16 \
+years+, 2011-2015 \"\>", ",", "\<\" 18.3\"\>"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Income & Poverty\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Median household income (in 2015 dollars), \
+2011-2015 \"\>", ",", "\<\" $58,840\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Per capita income in past 12 months (in 2015 \
+dollars), 2011-2015 \"\>", ",", "\<\" $29,803\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Persons in poverty, percent \"\>", 
+             ",", "\<\" \:e840 \:e83f 11.1%\"\>"}], "}"}]}], "}"}]}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"\<\"Businesses\"\>", ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Businesses\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total employer establishments, 2015 \"\>", 
+             ",", "\<\" 21,040 1 \"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total employment, 2015 \"\>", 
+             ",", "\<\" 219,881 1 \"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total annual payroll, 2015 ($1,000) \"\>", 
+             ",", "\<\" 10,094,010 1 \"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total employment, percent change, 2014-2015 \"\>", 
+             ",", "\<\" FN 1 \"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Total nonemployer establishments, 2015 \"\>", 
+             ",", "\<\" 48,140\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"\<\" All firms, 2012 \"\>", ",", "\<\" 62,427\"\>"}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Men-owned firms, 2012 \"\>", 
+             ",", "\<\" 30,039\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Women-owned firms, 2012 \"\>", 
+             ",", "\<\" 19,344\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Minority-owned firms, 2012 \"\>", 
+             ",", "\<\" 4,077\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Nonminority-owned firms, 2012 \"\>", 
+             ",", "\<\" 55,397\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Veteran-owned firms, 2012 \"\>", 
+             ",", "\<\" 6,470\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Nonveteran-owned firms, 2012 \"\>", 
+             ",", "\<\" 51,353\"\>"}], "}"}]}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\<\"Geography\"\>", ",", 
+         RowBox[{"{", 
+          RowBox[{"\<\"Geography\"\>", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Population per square mile, 2010 \"\>", 
+             ",", "\<\" 5.8\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\<\" Land area in square miles, 2010 \"\>", 
+             ",", "\<\" 97,093.14\"\>"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"\<\" FIPS Code \"\>", ",", "\<\" 56\"\>"}], "}"}]}], 
+          "}"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\<\" 1 Includes data not distributed by county.\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"\<\" (a) Includes persons reporting only one race\"\>", 
+         ",", "\<\" (b) Hispanics may be of any race, so also are included in \
+applicable race categories\"\>", 
+         ",", "\<\" (c) Economic Census - Puerto Rico data are not comparable \
+to U.S. Economic Census data\"\>"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\<\" D Suppressed to avoid disclosure of confidential \
+information\"\>", ",", "\<\" F Fewer than 25 firms\"\>", 
+         ",", "\<\" FN Footnote on this item in place of data\"\>", 
+         ",", "\<\" NA Not available\"\>", 
+         ",", "\<\" S Suppressed; does not meet publication standards\"\>", 
+         ",", "\<\" X Not applicable\"\>", 
+         ",", "\<\" Z Value greater than zero but less than half unit of \
+measure shown\"\>", 
+         ",", "\<\" - Either no or too few sample observations were available \
+to compute an estimate, or a ratio of medians cannot be calculated because \
+one or both of the median estimates falls in the lowest or upper interval of \
+an open ended distribution.\"\>"}], "}"}]}], "}"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.707685864669088*^9},ExpressionUUID->"18339021-a4de-45dd-b272-\
+fddf38d7db34"]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{1255, 723},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (May 2, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 176, 3, 92, "Title", "ExpressionUUID" -> \
+"21d7e2dc-4153-4bc1-8fef-64a014286f76"],
+Cell[CellGroupData[{
+Cell[781, 29, 224, 5, 32, "Input", "ExpressionUUID" -> \
+"04c0af00-ad91-4d06-9593-770238f0b935"],
+Cell[1008, 36, 234, 6, 40, "Output", "ExpressionUUID" -> \
+"2349b9a2-5d11-42f8-aa03-7e0826d37ca4"]
+}, Open  ]],
+Cell[1257, 45, 152, 3, 32, "Input", "ExpressionUUID" -> \
+"2df22dfd-9514-438b-9c96-14838f9d5926"],
+Cell[1412, 50, 691, 18, 54, "Input", "ExpressionUUID" -> \
+"ed3084a9-7557-4f71-badb-4a2a1682a2ce"],
+Cell[CellGroupData[{
+Cell[2128, 72, 3937, 67, 201, InheritFromParent, "ExpressionUUID" -> \
+"21494336-48b5-4c73-96cc-dfbf9ef5bc5b"],
+Cell[6068, 141, 21483, 421, 316, "Output", "ExpressionUUID" -> \
+"50585d7e-eae7-4ee4-a473-b843289d4214"]
+}, Open  ]],
+Cell[27566, 565, 430, 12, 32, "Input", "ExpressionUUID" -> \
+"64a7657d-a3f3-4ddc-8dd8-843307a750aa"],
+Cell[27999, 579, 308, 8, 32, "Input", "ExpressionUUID" -> \
+"2b92f768-97fe-44b9-9950-d2678723f95c"],
+Cell[CellGroupData[{
+Cell[28332, 591, 340, 9, 32, "Input", "ExpressionUUID" -> \
+"0d87b40e-fb11-45ed-b3f1-360f3a0b40d9"],
+Cell[28675, 602, 7515, 201, 95, "Output", "ExpressionUUID" -> \
+"7339ca02-11ff-466e-a2f4-f8a564d02cb8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36227, 808, 196, 4, 32, "Input", "ExpressionUUID" -> \
+"c02db629-ffb3-4fb6-a121-f4efa8fac186"],
+Cell[36426, 814, 3059, 69, 159, "Output", "ExpressionUUID" -> \
+"2c8824ea-a0a2-4fed-a2af-bdca5f9f2323"]
+}, Open  ]],
+Cell[39500, 886, 201, 5, 32, "Input", "ExpressionUUID" -> \
+"7770fc15-98c6-4aba-bf73-ffac13e125e4"],
+Cell[CellGroupData[{
+Cell[39726, 895, 886, 25, 54, "Input", "ExpressionUUID" -> \
+"347302cd-afa7-47ab-9267-9c266c0a9538"],
+Cell[40615, 922, 15158, 380, 999, "Output", "ExpressionUUID" -> \
+"615b0468-47a0-47d4-9cc7-c49a4c01086c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55810, 1307, 280, 7, 32, "Input", "ExpressionUUID" -> \
+"74393f58-15fe-4f03-b6bb-413ef3bd014b"],
+Cell[56093, 1316, 20107, 490, 1479, "Output", "ExpressionUUID" -> \
+"18339021-a4de-45dd-b272-fddf38d7db34"]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+

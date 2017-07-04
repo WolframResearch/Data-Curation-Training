@@ -9,10 +9,9 @@ This repository contains notebooks and other resources corresponding to a series
 * Notebooks and other resources - [Part1](Part1)
 
 #### Becoming a Certified Data Curator, Part 2
-* Wednesday, June 28, 6:00 PM - 8:00 PM CDT
-* [Twitch event page](https://www.twitch.tv/events/61606)
 * Topics covered: scraping HTML, clustering data, dealing with (somewhat) messy data
-* Notebooks and other resources will be posted following the screencast.
+* Screencast - [twitch.tv](https://www.twitch.tv/videos/155323516)
+* Notebooks and other resources - [Part2](Part2)
 
 ### Coming Soon
 #### Becoming a Certified Data Curator, Part 3
