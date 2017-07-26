@@ -1,4 +1,4 @@
-# Becoming a Certified Data Curator, Part 1
+# Becoming a Certified Data Curator, Part 2
 
 ## Synopsis
 
