@@ -13,10 +13,9 @@ This repository contains notebooks and other resources corresponding to a series
 * Screencast - [twitch.tv](https://www.twitch.tv/videos/155323516)
 * Notebooks and other resources - [Part2](Part2)
 
-### Coming Soon
 #### Becoming a Certified Data Curator, Part 3
-* Potential topics: scraping XML & JSON, making API calls
-* Email your topic ideas or data you'd like to see Aaron try scraping to aarone@wolfram.com
+* Topics covered: scraping XML & JSON, avoiding common errors
+* Notebooks and other resources - [Part3](Part3)
 
 ### More information:
 * Wolfram Data Repository - [datarepository.wolframcloud.com](http://datarepository.wolframcloud.com/)
