@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-These notebooks correspond to Aaron Enright's Twitch coding session in which he demonstrated scraping JSON and HTML.
+These notebooks correspond to Aaron Enright's Twitch coding session in which he demonstrated scraping JSON and XML.
 
 The session can be found by using the following link:
 [Live coding session](https://www.twitch.tv/videos/158655086)
