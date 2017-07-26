@@ -1,0 +1,513 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16830,        503]
+NotebookOptionsPosition[     13672,        419]
+NotebookOutlinePosition[     14020,        434]
+CellTagsIndexPosition[     13977,        431]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Pitfalls to avoid", "Section",
+ CellChangeTimes->{{3.708880154516244*^9, 
+  3.7088801629302*^9}},ExpressionUUID->"4aca6d70-4dcb-415c-935b-5af5f8e0fd8d"],
+
+Cell["URLs as string : wrap in URL", "Text",
+ CellChangeTimes->{{3.708880172538376*^9, 
+  3.708880186089304*^9}},ExpressionUUID->"202fdf9a-c38e-44c0-98d5-\
+42de74428abe"],
+
+Cell["\<\
+Not populating missing data points with Missing[] : don't use Null, \"\", \"-\
+\"...\
+\>", "Text",
+ CellChangeTimes->{{3.708880219896449*^9, 
+  3.708880251023258*^9}},ExpressionUUID->"03c95c63-cc36-4c3e-9c76-\
+6ffe17394141"],
+
+Cell["\<\
+Leaving Interpreter Failures in: Should be investigated and turned into \
+successes, or turned into Missing[]\
+\>", "Text",
+ CellChangeTimes->{{3.708880303223886*^9, 
+  3.708880344023327*^9}},ExpressionUUID->"f9a1d8e3-fbf8-4fae-bc12-\
+791bb1a3f217"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<Integer\>\"", "]"}], "[", "\"\<asdads\>\"",
+   "]"}]], "Input",
+ CellChangeTimes->{{3.708880265717947*^9, 
+  3.708880279054693*^9}},ExpressionUUID->"ce69cada-3fdc-4ebb-97b2-\
+33ce45592c35"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["Failure",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False}, 
+    PanelBox[
+     PaneSelectorBox[{False->GridBox[{
+        {
+         PaneBox[
+          ButtonBox[
+           
+           DynamicBox[FEPrivate`FrontEndResource[
+            "FEBitmaps", "SquarePlusIconMedium"],
+            ImageSizeCache->{12., {0., 12.}}],
+           Appearance->None,
+           ButtonFunction:>(Typeset`open$$ = True),
+           Evaluator->Automatic,
+           Method->"Preemptive"],
+          Alignment->{Center, Center},
+          
+          ImageSize->
+           Dynamic[{
+            Automatic, 3.5 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+             Magnification]}]], 
+         FrameBox[
+          StyleBox["\<\"\[WarningSign]\"\>", "Message",
+           StripOnInput->False,
+           FontSize->35],
+          ContentPadding->False,
+          FrameMargins->{{0, 0}, {0, 0}},
+          FrameStyle->None,
+          StripOnInput->False], GridBox[{
+           {
+            TagBox[GridBox[{
+               {
+                TagBox["\<\"Message: \"\>",
+                 "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                TagBox["\<\"Enter a valid number.\"\>",
+                 "SummaryItem"]}
+              },
+              GridBoxAlignment->{"Columns" -> {{Left}}},
+              GridBoxItemSize->{"Columns" -> {6.5, All}},
+              GridBoxSpacings->{"Columns" -> {{0}}}],
+             "SummaryItem"]},
+           {
+            TagBox[GridBox[{
+               {
+                TagBox["\<\"Tag: \"\>",
+                 "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                TagBox["\<\"InterpretationFailure\"\>",
+                 "SummaryItem"]}
+              },
+              GridBoxAlignment->{"Columns" -> {{Left}}},
+              GridBoxItemSize->{"Columns" -> {6.5, All}},
+              GridBoxSpacings->{"Columns" -> {{0}}}],
+             "SummaryItem"]}
+          },
+          AutoDelete->False,
+          
+          BaseStyle->{
+           ShowStringCharacters -> False, NumberMarks -> False, 
+            PrintPrecision -> 3, ShowSyntaxStyles -> False},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Top}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Rows" -> {{Top}}},
+       GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True->
+      GridBox[{
+        {
+         PaneBox[
+          ButtonBox[
+           
+           DynamicBox[FEPrivate`FrontEndResource[
+            "FEBitmaps", "SquareMinusIconMedium"]],
+           Appearance->None,
+           ButtonFunction:>(Typeset`open$$ = False),
+           Evaluator->Automatic,
+           Method->"Preemptive"],
+          Alignment->{Center, Center},
+          
+          ImageSize->
+           Dynamic[{
+            Automatic, 3.5 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+             Magnification]}]], 
+         FrameBox[
+          StyleBox["\<\"\[WarningSign]\"\>", "Message",
+           StripOnInput->False,
+           FontSize->35],
+          ContentPadding->False,
+          FrameMargins->{{0, 0}, {0, 0}},
+          FrameStyle->None,
+          StripOnInput->False], GridBox[{
+           {
+            TagBox[GridBox[{
+               {
+                TagBox["\<\"Message: \"\>",
+                 "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                TagBox["\<\"Enter a valid number.\"\>",
+                 "SummaryItem"]}
+              },
+              GridBoxAlignment->{"Columns" -> {{Left}}},
+              GridBoxItemSize->{"Columns" -> {6.5, All}},
+              GridBoxSpacings->{"Columns" -> {{0}}}],
+             "SummaryItem"]},
+           {
+            TagBox[GridBox[{
+               {
+                TagBox["\<\"Tag: \"\>",
+                 "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                TagBox["\<\"InterpretationFailure\"\>",
+                 "SummaryItem"]}
+              },
+              GridBoxAlignment->{"Columns" -> {{Left}}},
+              GridBoxItemSize->{"Columns" -> {6.5, All}},
+              GridBoxSpacings->{"Columns" -> {{0}}}],
+             "SummaryItem"]},
+           {
+            RowBox[{
+             TagBox[
+              TemplateBox[{"\"Input\"","\": \""},
+               "RowDefault"],
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["\<\"asdads\"\>",
+              "SummaryItem"]}]},
+           {
+            RowBox[{
+             TagBox[
+              TemplateBox[{"\"Type\"","\": \""},
+               "RowDefault"],
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["\<\"Integer\"\>",
+              "SummaryItem"]}]}
+          },
+          AutoDelete->False,
+          
+          BaseStyle->{
+           ShowStringCharacters -> False, NumberMarks -> False, 
+            PrintPrecision -> 3, ShowSyntaxStyles -> False},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Top}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Rows" -> {{Top}}},
+       GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, Dynamic[
+      Typeset`open$$],
+      ImageSize->Automatic],
+     BaselinePosition->Baseline],
+    DynamicModuleValues:>{}], "]"}],
+  Failure["InterpretationFailure", 
+   Association[
+   "MessageTemplate" :> MessageName[Interpreter, "number"], 
+    "MessageParameters" -> Association["Input" -> "asdads"], "Input" -> 
+    "asdads", "Type" -> "Integer"]],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{
+  3.708880279813716*^9},ExpressionUUID->"36df8354-e389-433d-8204-\
+21376522c451"]
+}, Open  ]],
+
+Cell["Quantity Magnitudes that are strings, not numbers", "Text",
+ CellChangeTimes->{{3.708880398583682*^9, 
+  3.7088804118470488`*^9}},ExpressionUUID->"fe90c9e7-9012-4f48-b1b3-\
+941f89791d6f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Quantity", "[", 
+  RowBox[{"\"\<123\>\"", ",", "\"\<Feet\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.70888035173985*^9, 
+  3.708880363584154*^9}},ExpressionUUID->"500a989a-1d88-473e-a3e2-\
+31f0d789a982"],
+
+Cell[BoxData[
+ TemplateBox[{"\"123\"","\"ft\"","feet","\"Feet\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.7088803641281157`*^9},ExpressionUUID->"02c834db-b523-4a1b-9715-\
+ce1f9a7b3ef2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Quantity", "[", 
+   RowBox[{"123", ",", "\"\<Feet\>\""}], "]"}], " ", "+", " ", 
+  RowBox[{"Quantity", "[", 
+   RowBox[{"345", ",", "\"\<Feet\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.70888035173985*^9, 
+  3.708880390513088*^9}},ExpressionUUID->"b09fd29f-0dbd-4c96-8aff-\
+908233bfc97a"],
+
+Cell[BoxData[
+ TemplateBox[{"468","\"ft\"","feet","\"Feet\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.708880380519897*^9, 
+  3.708880390993121*^9}},ExpressionUUID->"4c8d586d-914d-4e73-8f1d-\
+e2f681462372"]
+}, Open  ]],
+
+Cell["Incompatible Quantity Units", "Text",
+ CellChangeTimes->{{3.7088804317850437`*^9, 
+  3.7088804400095177`*^9}},ExpressionUUID->"7985bc68-4fb4-4305-aaa0-\
+8ffdc36e339d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Quantity", "[", 
+   RowBox[{"123", ",", "\"\<Feet\>\""}], "]"}], " ", "+", " ", 
+  RowBox[{"Quantity", "[", 
+   RowBox[{"345", ",", "\"\<Centimeters\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.70888035173985*^9, 3.708880390513088*^9}, {
+  3.708880428140018*^9, 
+  3.708880455192378*^9}},ExpressionUUID->"ff0941cf-fe61-4dfe-ab9d-\
+161fb8ab6925"],
+
+Cell[BoxData[
+ TemplateBox[{
+  FractionBox["102351", "25"],"\"cm\"","centimeters","\"Centimeters\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.708880447434019*^9, 
+  3.7088804556299887`*^9}},ExpressionUUID->"1badd0c1-056f-4dab-968f-\
+16a36bcde7de"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CompatibleUnitQ", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"123", ",", "\"\<Feet\>\""}], "]"}], " ", ",", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"345", ",", "\"\<Centimeters\>\""}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.708880463392149*^9, 
+  3.70888050242445*^9}},ExpressionUUID->"ed3da0e0-2b22-46ec-b832-\
+ccff0842eeb7"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.7088805028205347`*^9},ExpressionUUID->"3dc05a51-0a2d-433a-8875-\
+4f1adfaf2653"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CompatibleUnitQ", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"123", ",", "\"\<Feet\>\""}], "]"}], " ", ",", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"345", ",", "\"\<Pounds\>\""}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.708880463392149*^9, 
+  3.7088805090807467`*^9}},ExpressionUUID->"de309411-58de-484d-a5b3-\
+0b8b9391c20b"],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{
+  3.7088805097065887`*^9},ExpressionUUID->"0e823d30-9f68-4207-88b5-\
+e7bb7791ef03"]
+}, Open  ]],
+
+Cell["ID numbers should be strings : ZIPCodes, FIPS codes, etc", "Text",
+ CellChangeTimes->{{3.7088805593939*^9, 3.7088805728740807`*^9}, {
+  3.7088806723459263`*^9, 
+  3.708880684881916*^9}},ExpressionUUID->"87afe3b4-9e7b-45a5-9544-\
+2c2d86cbe676"],
+
+Cell["\<\
+Too many lists : if the data should be a list, make it so.  If you have all \
+values for a property as length 1|0 lists, take them out of the list, turn \
+empty lists into Missing[]\
+\>", "Text",
+ CellChangeTimes->{{3.708880715352433*^9, 
+  3.708880790863308*^9}},ExpressionUUID->"2292765f-99cf-49c8-88e8-\
+a778e93febc6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<City\>\"", "]"}], "[", 
+  RowBox[{"\"\<springfield\>\"", "<>", "\"\< MA\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.708880832726503*^9, 3.708880844150876*^9}, {
+  3.7088808888266077`*^9, 
+  3.708880892112446*^9}},ExpressionUUID->"32028d61-57be-4b03-8a48-\
+2c5fa368684d"],
+
+Cell[BoxData[
+ TemplateBox[{"\"Springfield\"",RowBox[{"Entity", "[", 
+     RowBox[{"\"City\"", ",", 
+       RowBox[{"{", 
+         RowBox[{
+          "\"Springfield\"", ",", "\"Massachusetts\"", ",", 
+           "\"UnitedStates\""}], "}"}]}], "]"}],
+   "\"Entity[\\\"City\\\", {\\\"Springfield\\\", \\\"Massachusetts\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+  "Entity"]], "Output",
+ CellChangeTimes->{
+  3.708880893113058*^9},ExpressionUUID->"8b01ba89-3480-4909-99fa-\
+0a135e1c73f5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"%", "//", "InputForm"}]], "Input",
+ CellChangeTimes->{{3.708880896313665*^9, 
+  3.708880900362561*^9}},ExpressionUUID->"819b4b65-7705-424a-8efa-\
+f6c2d79b8cb0"],
+
+Cell["\<\
+Entity[\"City\", {\"Springfield\", \"Massachusetts\", \"UnitedStates\"}]\
+\>", "Output",
+ CellChangeTimes->{
+  3.708880900762285*^9},ExpressionUUID->"c13e36a7-a619-42e4-b4f1-\
+d38fbf9bab1f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  TemplateBox[{"\"Springfield\"",RowBox[{"Entity", "[", 
+      RowBox[{"\"City\"", ",", 
+        RowBox[{"{", 
+          
+          RowBox[{"\"Springfield\"", ",", "\"Illinois\"", ",", 
+            "\"UnitedStates\""}], "}"}]}], "]"}],
+    "\"Entity[\\\"City\\\", {\\\"Springfield\\\", \\\"Illinois\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+   "Entity"], "//", "InputForm"}]], "Input",
+ CellChangeTimes->{{3.708880869720832*^9, 
+  3.708880873881562*^9}},ExpressionUUID->"79cea1ee-e772-452d-9d12-\
+0fa462571c60"],
+
+Cell["Entity[\"City\", {\"Springfield\", \"Illinois\", \"UnitedStates\"}]", \
+"Output",
+ CellChangeTimes->{
+  3.708880874460569*^9},ExpressionUUID->"da69bc53-920a-4212-9726-\
+5d1522e20e0e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 655},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (May 2, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 158, 2, 64, "Section", "ExpressionUUID" -> \
+"4aca6d70-4dcb-415c-935b-5af5f8e0fd8d"],
+Cell[741, 26, 170, 3, 30, "Text", "ExpressionUUID" -> \
+"202fdf9a-c38e-44c0-98d5-42de74428abe"],
+Cell[914, 31, 234, 6, 30, "Text", "ExpressionUUID" -> \
+"03c95c63-cc36-4c3e-9c76-6ffe17394141"],
+Cell[1151, 39, 259, 6, 30, "Text", "ExpressionUUID" -> \
+"f9a1d8e3-fbf8-4fae-bc12-791bb1a3f217"],
+Cell[CellGroupData[{
+Cell[1435, 49, 248, 6, 32, "Input", "ExpressionUUID" -> \
+"ce69cada-3fdc-4ebb-97b2-33ce45592c35"],
+Cell[1686, 57, 6120, 170, 62, "Output", "ExpressionUUID" -> \
+"36df8354-e389-433d-8204-21376522c451"]
+}, Open  ]],
+Cell[7821, 230, 193, 3, 30, "Text", "ExpressionUUID" -> \
+"fe90c9e7-9012-4f48-b1b3-941f89791d6f"],
+Cell[CellGroupData[{
+Cell[8039, 237, 230, 5, 32, "Input", "ExpressionUUID" -> \
+"500a989a-1d88-473e-a3e2-31f0d789a982"],
+Cell[8272, 244, 196, 5, 34, "Output", "ExpressionUUID" -> \
+"02c834db-b523-4a1b-9715-ce1f9a7b3ef2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8505, 254, 328, 8, 32, "Input", "ExpressionUUID" -> \
+"b09fd29f-0dbd-4c96-8aff-908233bfc97a"],
+Cell[8836, 264, 214, 5, 34, "Output", "ExpressionUUID" -> \
+"4c8d586d-914d-4e73-8f1d-e2f681462372"]
+}, Open  ]],
+Cell[9065, 272, 173, 3, 30, "Text", "ExpressionUUID" -> \
+"7985bc68-4fb4-4305-aaa0-8ffdc36e339d"],
+Cell[CellGroupData[{
+Cell[9263, 279, 384, 9, 32, "Input", "ExpressionUUID" -> \
+"ff0941cf-fe61-4dfe-ab9d-161fb8ab6925"],
+Cell[9650, 290, 255, 6, 54, "Output", "ExpressionUUID" -> \
+"1badd0c1-056f-4dab-968f-16a36bcde7de"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9942, 301, 376, 9, 32, "Input", "ExpressionUUID" -> \
+"ed3da0e0-2b22-46ec-b832-ccff0842eeb7"],
+Cell[10321, 312, 135, 3, 32, "Output", "ExpressionUUID" -> \
+"3dc05a51-0a2d-433a-8875-4f1adfaf2653"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10493, 320, 374, 9, 32, "Input", "ExpressionUUID" -> \
+"de309411-58de-484d-a5b3-0b8b9391c20b"],
+Cell[10870, 331, 136, 3, 32, "Output", "ExpressionUUID" -> \
+"0e823d30-9f68-4207-88b5-e7bb7791ef03"]
+}, Open  ]],
+Cell[11021, 337, 249, 4, 30, "Text", "ExpressionUUID" -> \
+"87afe3b4-9e7b-45a5-9544-2c2d86cbe676"],
+Cell[11273, 343, 331, 7, 49, "Text", "ExpressionUUID" -> \
+"2292765f-99cf-49c8-88e8-a778e93febc6"],
+Cell[CellGroupData[{
+Cell[11629, 354, 332, 7, 32, "Input", "ExpressionUUID" -> \
+"32028d61-57be-4b03-8a48-2c5fa368684d"],
+Cell[11964, 363, 488, 12, 41, "Output", "ExpressionUUID" -> \
+"8b01ba89-3480-4909-99fa-0a135e1c73f5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12489, 380, 184, 4, 32, "Input", "ExpressionUUID" -> \
+"819b4b65-7705-424a-8efa-f6c2d79b8cb0"],
+Cell[12676, 386, 200, 5, 43, "Output", "ExpressionUUID" -> \
+"c13e36a7-a619-42e4-b4f1-d38fbf9bab1f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12913, 396, 539, 13, 41, InheritFromParent, "ExpressionUUID" -> \
+"79cea1ee-e772-452d-9d12-0fa462571c60"],
+Cell[13455, 411, 189, 4, 43, "Output", "ExpressionUUID" -> \
+"da69bc53-920a-4212-9726-5d1522e20e0e"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
