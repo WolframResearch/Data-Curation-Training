@@ -15,6 +15,7 @@ This repository contains notebooks and other resources corresponding to a series
 
 #### Becoming a Certified Data Curator, Part 3
 * Topics covered: scraping XML & JSON, avoiding common errors
+* Screencast - [twitch.tv](https://www.twitch.tv/videos/158655086)
 * Notebooks and other resources - [Part3](Part3)
 
 ### More information:
